@@ -3,7 +3,7 @@ import Footer from "./Footer";
 export default function PersonalInfo() {
     return (
         <div className="pt-8 pb-8 flex justify-center items-center">
-            <div>
+            <div className="w-3/4">
                 <div className="mb-8">
                     <p className="text-primaryMarineBlue font-bold text-2xl">Personal info</p>
                     <p className="text-neutralCoolGray font-thin text-sm">Please provide your name, email address, and phone number.</p>
