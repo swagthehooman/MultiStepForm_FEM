@@ -15,7 +15,8 @@ export default {
       'neutralLightGray': 'hsl(229, 24%, 87%)',
       'neutralMagnolia': 'hsl(217, 100%, 97%)',
       'neutralAlabaster': 'hsl(231, 100%, 99%)',
-      'neutralWhite': 'hsl(0, 0%, 100%)'  
+      'neutralWhite': 'hsl(0, 0%, 100%)',
+      'attribution': 'hsl(228, 45%, 44%)'
     },
     fontFamily:{
       'ubuntu':['Ubuntu','sans-serif']
