@@ -1,6 +1,9 @@
 import Footer from "./Footer";
 
 export default function PersonalInfo() {
+
+
+
     return (
         <div className="pt-8 pb-8 flex justify-center items-center">
             <div className="w-3/4">
