@@ -1,40 +1,32 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface IAddOnState {
-    addOns: string[],
-    prices: number[]
-}
-
-interface IPayload {
     addOn: string,
     price: number
 }
 
-const initialState: IAddOnState = {
-    addOns: [],
-    prices: []
-}
+const initialState: IAddOnState[] = []
 
 const AddOnSlice = createSlice({
     name: 'addons',
     initialState,
     reducers: {
-        selectItem: (state, action: PayloadAction<IPayload>)=>{
-            if(!state.addOns.includes(action.payload.addOn)){
-                state.addOns = [...state.addOns, action.payload.addOn]
-                state.prices = [...state.prices, action.payload.price]
-            }
+        selectItem: (state, action: PayloadAction<IAddOnState>)=>{
+            state = [...state, {
+                addOn: action.payload.addOn,
+                price: action.payload.price
+            }]
         },
-        removeItem: (state, action: PayloadAction<IPayload>)=>{
-            if(state.addOns.includes(action.payload.addOn)){
-                state.addOns = state.addOns.filter(i=> i===action.payload.addOn)
-                state.prices = state.prices.filter(i=> i===action.payload.price)
-            }
+        removeItem: (state, action: PayloadAction<IAddOnState>)=>{
+            state = state.filter(i=> i.addOn!==action.payload.addOn)
+        },
+        reset: (state)=>{
+            state = []
         }
 
     }
 })
 
-export const {removeItem, selectItem} = AddOnSlice.actions
+export const {removeItem, selectItem, reset} = AddOnSlice.actions
 
 export default AddOnSlice.reducer

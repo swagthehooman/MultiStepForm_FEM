@@ -1,8 +1,11 @@
+import { useAppDispatch, useAppSelector } from "../hooks";
+import { setName, setEmail, setPhone, isEmailCorrect, isNameCorrect, isPhoneCorrect } from "../slices/PersonalInfoSlice";
 import Footer from "./Footer";
 
 export default function PersonalInfo() {
 
-
+    const personalInfo = useAppSelector((state) => state.personalInfo)
+    const dispatch = useAppDispatch()
 
     return (
         <div className="pt-8 pb-8 flex justify-center items-center">
@@ -15,23 +18,44 @@ export default function PersonalInfo() {
                 <div className="flex flex-col mb-4">
                     <div className="flex justify-between mb-1">
                         <label className="text-primaryMarineBlue text-sm font-medium">Name</label>
-                        <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        {!personalInfo.isNameCorrect &&
+                            <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        }
                     </div>
-                    <input type="text" className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
+                    <input type="text" value={personalInfo.name} onChange={(e) => {
+                        dispatch(setName(e.target.value))
+                        dispatch(isNameCorrect())
+                    }} className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
                 </div>
                 <div className="flex flex-col mb-4">
                     <div className="flex justify-between mb-1">
                         <label className="text-primaryMarineBlue text-sm font-medium">Email Address</label>
-                        <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        {personalInfo.email === '' &&
+                            <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        }
+                        {!personalInfo.isEmailCorrect && personalInfo.email !== '' &&
+                            <label className="text-primaryStrawberryRed text-sm font-bold">wrong email</label>
+                        }
                     </div>
-                    <input type="email" className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
+                    <input type="email" value={personalInfo.email} onChange={(e) => {
+                        dispatch(setEmail(e.target.value))
+                        dispatch(isEmailCorrect())
+                    }} className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
                 </div>
                 <div className="flex flex-col mb-16">
                     <div className="flex justify-between mb-1">
                         <label className="text-primaryMarineBlue text-sm font-medium">Phone Number</label>
-                        <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        {personalInfo.phone === '' &&
+                            <label className="text-primaryStrawberryRed text-sm font-bold">This field is required</label>
+                        }
+                        {personalInfo.phone !== '' && !personalInfo.isPhoneCorrect &&
+                            <label className="text-primaryStrawberryRed text-sm font-bold">wrong phone number</label>
+                        }
                     </div>
-                    <input type="text" className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
+                    <input type="text" value={personalInfo.phone} onChange={(e) => {
+                        dispatch(setPhone(e.target.value))
+                        dispatch(isPhoneCorrect())
+                    }} className="w-full border-2 rounded-md p-2 border-neutralCoolGray focus:outline-none text-primaryMarineBlue font-bold cursor-pointer" />
                 </div>
                 <Footer />
             </div>

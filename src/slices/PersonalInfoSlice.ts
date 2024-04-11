@@ -4,12 +4,18 @@ interface IPersonalInfoState {
     name: string,
     email: string,
     phone: string,
+    isNameCorrect: boolean,
+    isEmailCorrect: boolean,
+    isPhoneCorrect: boolean,
 }
 
 const initialState: IPersonalInfoState = {
     name: '',
     email: '',
     phone: '',
+    isEmailCorrect: false,
+    isPhoneCorrect: false,
+    isNameCorrect: false
 }
 
 const PersonalInfoSlice = createSlice({
@@ -24,11 +30,35 @@ const PersonalInfoSlice = createSlice({
         },
         setPhone: (state, action: PayloadAction<string>)=>{
             state.phone = action.payload
+        },
+        isPhoneCorrect: (state)=>{
+            for(let i=0;i<state.phone.length; i++){
+                if((state.phone.charAt(i)>='0' && state.phone.charAt(i)<='9') || (i===0 && state.phone.charAt(i)==='+'))
+                    state.isPhoneCorrect = true
+                else{
+                    state.isPhoneCorrect = false
+                    break
+                }
+            }
+        },
+        isEmailCorrect: (state)=>{
+            const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+
+            if(!state.email.match(re))
+                state.isEmailCorrect = false
+            else
+                state.isEmailCorrect = true
+        },
+        isNameCorrect: (state)=>{
+            if(state.name==='')
+                state.isNameCorrect = false
+            else
+                state.isNameCorrect = true
         }
     }
 })
 
-export const {setName, setEmail, setPhone} = PersonalInfoSlice.actions
+export const {setName, setEmail, setPhone, isEmailCorrect, isNameCorrect, isPhoneCorrect} = PersonalInfoSlice.actions
 
 
 

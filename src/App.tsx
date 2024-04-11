@@ -1,11 +1,10 @@
-import { useSelector } from "react-redux";
 import AddOnSelection from "./components/AddOnSelection";
 import PersonalInfo from "./components/PersonalInfo";
 import PlanSelection from "./components/PlanSelection";
 import StepTrack from "./components/StepTrack";
 import Summary from "./components/Summary";
 import ThankYou from "./components/ThankYou";
-import { useAppDispatch, useAppSelector } from "./hooks";
+import { useAppSelector } from "./hooks";
 
 export default function App() {
 

@@ -4,6 +4,7 @@ interface IPaymentPeriodState {
     paymentMethod: boolean
 }
 
+// false for monthly
 const initialState: IPaymentPeriodState = {
     paymentMethod: false
 }

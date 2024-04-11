@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
 interface IStepState {
     step: number
 }
@@ -18,12 +17,12 @@ const StepSlice = createSlice({
         decrement: (state)=>{
             state.step -= 1
         },
-        sendToPageNumber: (state, action: PayloadAction<number>)=>{
+        jumpToPageNumber: (state, action: PayloadAction<number>)=>{
             state.step = action.payload
         }
     }
 })
 
-export const {increment, decrement, sendToPageNumber} = StepSlice.actions
+export const {increment, decrement, jumpToPageNumber} = StepSlice.actions
 
 export default StepSlice.reducer
