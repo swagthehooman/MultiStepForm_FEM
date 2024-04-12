@@ -26,8 +26,8 @@ export default {
         'custom': '1fr 2.5fr',
       },
       backgroundImage: {
-        'desktop': "url('./assets/images/bg-sidebar-desktop.svg')",
-        'mobile': "url('./assets/images/bg-sidebar-mobile.svg')",
+        'desktop': "url('../assets/images/bg-sidebar-desktop.svg')",
+        'mobile': "url('../assets/images/bg-sidebar-mobile.svg')",
       }
     }
   },
