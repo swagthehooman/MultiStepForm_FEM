@@ -17,10 +17,14 @@ const PlanOptionSlice = createSlice({
         selectPlan: (state, action: PayloadAction<IPlanOptionState>)=>{
             state.planType = action.payload.planType
             state.price = action.payload.price
+        },
+        resetPlan: (state)=>{
+            state.planType = ''
+            state.price = 0
         }
     }
 })
 
-export const {selectPlan} = PlanOptionSlice.actions
+export const {selectPlan, resetPlan} = PlanOptionSlice.actions
 
 export default PlanOptionSlice.reducer

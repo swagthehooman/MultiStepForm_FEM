@@ -12,16 +12,17 @@ const AddOnSlice = createSlice({
     initialState,
     reducers: {
         selectItem: (state, action: PayloadAction<IAddOnState>)=>{
-            state = [...state, {
+
+            return [...state, {
                 addOn: action.payload.addOn,
                 price: action.payload.price
             }]
         },
-        removeItem: (state, action: PayloadAction<IAddOnState>)=>{
-            state = state.filter(i=> i.addOn!==action.payload.addOn)
+        removeItem: (state, action: PayloadAction<string>)=>{
+            return state.filter(i=> i.addOn!==action.payload)           
         },
-        reset: (state)=>{
-            state = []
+        reset: ()=>{
+            return []
         }
 
     }

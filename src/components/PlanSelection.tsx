@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { changePaymentPeriod } from "../slices/PaymentPeriodSlice";
-import { selectPlan } from "../slices/PlanOptionSlice";
+import { selectPlan, resetPlan } from "../slices/PlanOptionSlice";
 import Footer from "./Footer";
 
 export default function PlanSelection() {
@@ -10,7 +10,29 @@ export default function PlanSelection() {
     const paymentPeriodDispatch = useAppDispatch()
     const planSelectionDispatch = useAppDispatch()
 
+    const handlePlanSelection = (planName: string) => {
+        if (paymentMethod) {
+            if (planName === 'Arcade')
+                planSelectionDispatch(selectPlan({ planType: planName, price: 90 }))
+            else if (planName === 'Advanced')
+                planSelectionDispatch(selectPlan({ planType: planName, price: 120 }))
+            else
+                planSelectionDispatch(selectPlan({ planType: planName, price: 150 }))
+        }
+        else {
+            if (planName === 'Arcade')
+                planSelectionDispatch(selectPlan({ planType: planName, price: 9 }))
+            else if (planName === 'Advanced')
+                planSelectionDispatch(selectPlan({ planType: planName, price: 12 }))
+            else
+                planSelectionDispatch(selectPlan({ planType: planName, price: 15 }))
+        }
+    }
 
+    const changePaymentMethod = () => {
+        paymentPeriodDispatch(changePaymentPeriod())
+        planSelectionDispatch(resetPlan())
+    }
 
     return (
         <div className="pt-8 pb-8 flex justify-center items-center">
@@ -20,7 +42,7 @@ export default function PlanSelection() {
                     <p className="text-neutralCoolGray font-thin text-sm">You have the option of monthly or yearly billing.</p>
                 </div>
                 <div className="flex gap-4 justify-between h-40">
-                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Arcade' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => planSelectionDispatch(selectPlan('Arcade'))}>
+                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Arcade' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => handlePlanSelection('Arcade')}>
                         <img src="./assets/images/icon-arcade.svg" />
                         <div className="text-start">
                             <p className="text-primaryMarineBlue font-bold text-base">Arcade</p>
@@ -28,7 +50,7 @@ export default function PlanSelection() {
                             {paymentMethod && <p className="text-[0.75rem] text-primaryPurplishBlue">2 months free</p>}
                         </div>
                     </button>
-                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Advanced' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => planSelectionDispatch(selectPlan('Advanced'))}>
+                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Advanced' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => handlePlanSelection('Advanced')}>
                         <img src="./assets/images/icon-advanced.svg" />
                         <div className="text-start">
                             <p className="text-primaryMarineBlue font-bold text-base">Advanced</p>
@@ -36,7 +58,7 @@ export default function PlanSelection() {
                             {paymentMethod && <p className="text-[0.75rem] text-primaryPurplishBlue">2 months free</p>}
                         </div>
                     </button>
-                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Pro' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => planSelectionDispatch(selectPlan({ planType: 'Pro', price:}))}>
+                    <button className={`p-3 w-1/3 border-neutralLightGray hover:border-primaryPurplishBlue border-2 rounded-md flex flex-col justify-between hover:bg-neutralMagnolia ${planType === 'Pro' ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => handlePlanSelection('Pro')}>
                         <img src="./assets/images/icon-pro.svg" />
                         <div className="text-start">
                             <p className="text-primaryMarineBlue font-bold text-base">Pro</p>
@@ -48,7 +70,7 @@ export default function PlanSelection() {
                 <div className="w-full p-4 rounded-md mt-8 mb-16 flex items-center justify-center gap-4 bg-neutralMagnolia">
                     <p className={`${paymentMethod ? 'text-neutralCoolGray' : 'text-primaryMarineBlue'} font-bold text-sm`}>Monthly</p>
                     <label className="bg-primaryMarineBlue relative w-12 h-6 rounded-full cursor-pointer">
-                        <input type="checkbox" className="sr-only peer" value={planType} onClick={() => paymentPeriodDispatch(changePaymentPeriod())} />
+                        <input type="checkbox" className="sr-only peer" value={planType} onClick={changePaymentMethod} />
                         <span className="w-1/4 h-2/4 bg-neutralAlabaster absolute top-1.5 left-1 rounded-full peer-checked:left-8 transition-all duration-200" />
                     </label>
 

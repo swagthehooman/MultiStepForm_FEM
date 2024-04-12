@@ -10,10 +10,7 @@ export default function AddOnSelection() {
 
     const handleAddToList = (addOn: string, price: number) => {
         if (addOnSelection.find(i => i.addOn === addOn)) {
-            if (paymentMethod)
-                addOnSelectionDispatch(removeItem({ addOn: addOn, price: price * 10 }))
-            else
-                addOnSelectionDispatch(removeItem({ addOn: addOn, price: price }))
+            addOnSelectionDispatch(removeItem(addOn))
         } else {
             if (paymentMethod)
                 addOnSelectionDispatch(selectItem({ addOn: addOn, price: price * 10 }))

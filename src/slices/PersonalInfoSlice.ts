@@ -13,9 +13,9 @@ const initialState: IPersonalInfoState = {
     name: '',
     email: '',
     phone: '',
-    isEmailCorrect: false,
-    isPhoneCorrect: false,
-    isNameCorrect: false
+    isEmailCorrect: true,
+    isPhoneCorrect: true,
+    isNameCorrect: true
 }
 
 const PersonalInfoSlice = createSlice({
