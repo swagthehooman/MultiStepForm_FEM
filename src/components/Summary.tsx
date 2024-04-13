@@ -35,8 +35,8 @@ export default function Summary() {
     }
 
     return (
-        <div className="pt-8 pb-8 flex justify-center items-center">
-            <div className="w-3/4">
+        <div className="pt-8 pb-8 flex justify-center items-center max-sm:absolute max-sm:top-40 max-sm:bg-neutralWhite max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 max-sm:p-4 max-sm:pt-8 max-sm:pb-8 max-sm:w-4/5 max-sm:rounded-md">
+            <div className="w-3/4 max-sm:w-full">
                 <div className="mb-8">
                     <p className="text-primaryMarineBlue font-bold text-2xl">Finishing up</p>
                     <p className="text-neutralCoolGray font-thin text-sm">Double-check everything looks OK before confirming.</p>

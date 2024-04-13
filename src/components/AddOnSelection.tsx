@@ -20,10 +20,10 @@ export default function AddOnSelection() {
     }
 
     return (
-        <div className="pt-8 pb-8 flex justify-center items-center">
-            <div className="w-3/4">
+        <div className="pt-8 pb-8 flex justify-center items-center max-sm:absolute max-sm:top-40 max-sm:bg-neutralWhite max-sm:left-1/2 max-sm:transform max-sm:-translate-x-1/2 max-sm:p-4 max-sm:pt-8 max-sm:pb-8 max-sm:w-4/5 max-sm:rounded-md">
+            <div className="w-3/4 max-sm:w-full">
                 <div className="mb-8">
-                    <p className="text-primaryMarineBlue font-bold text-2xl">Pick add-ons</p>
+                    <p className="max-sm:mb-2 text-primaryMarineBlue font-bold text-2xl">Pick add-ons</p>
                     <p className="text-neutralCoolGray font-thin text-sm">Add-ons help enhance your gaming experience.</p>
                 </div>
                 <div className={`mb-8 flex items-center justify-between border-neutralCoolGray border-[1px] p-4 rounded-md hover:border-primaryPurplishBlue hover:bg-neutralMagnolia cursor-pointer ${addOnSelection.find(i => i.addOn === 'Online service') ? 'border-primaryPurplishBlue bg-neutralMagnolia' : ''}`} onClick={() => handleAddToList('Online service', 1)}>

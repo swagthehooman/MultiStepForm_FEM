@@ -10,7 +10,7 @@ export default function App() {
 
   const step = useAppSelector((state) => state.steps.step)
 
-  return <div className="font-ubuntu font-normal grid grid-cols-custom p-4 rounded-md bg-neutralWhite">
+  return <div className="font-ubuntu font-normal grid grid-cols-custom p-4 rounded-md bg-neutralWhite max-sm:block max-sm:p-0 max-sm:w-screen max-sm:h-screen max-sm:relative max-sm:bg-primaryLightBlue">
     <StepTrack />
     {
       step === 1 ? <PersonalInfo /> :

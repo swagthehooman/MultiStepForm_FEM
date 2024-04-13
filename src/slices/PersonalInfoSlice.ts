@@ -32,14 +32,12 @@ const PersonalInfoSlice = createSlice({
             state.phone = action.payload
         },
         isPhoneCorrect: (state)=>{
-            for(let i=0;i<state.phone.length; i++){
-                if((state.phone.charAt(i)>='0' && state.phone.charAt(i)<='9') || (i===0 && state.phone.charAt(i)==='+'))
-                    state.isPhoneCorrect = true
-                else{
-                    state.isPhoneCorrect = false
-                    break
-                }
-            }
+            const re = /(\+\d{1,3}\s?)?((\(\d{3}\)\s?)|(\d{3})(\s|-?))(\d{3}(\s|-?))(\d{4})(\s?(([E|e]xt[:|.|]?)|x|X)(\s?\d+))?/g
+
+            if(!state.phone.match(re))
+                state.isPhoneCorrect = false
+            else
+                state.isPhoneCorrect = true
         },
         isEmailCorrect: (state)=>{
             const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/

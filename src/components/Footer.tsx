@@ -1,4 +1,5 @@
 import { useAppDispatch, useAppSelector } from "../hooks"
+import { isEmailCorrect, isNameCorrect, isPhoneCorrect } from "../slices/PersonalInfoSlice"
 import { decrement, increment } from "../slices/StepSlice"
 
 export default function Footer() {
@@ -10,8 +11,13 @@ export default function Footer() {
 
     const handleNextStep = () => {
         if (step === 1) {
-            if (personalInfo.isEmailCorrect && personalInfo.isNameCorrect && personalInfo.isPhoneCorrect)
+            if (personalInfo.email !== '' && personalInfo.name !== '' && personalInfo.phone !== '' && personalInfo.isEmailCorrect && personalInfo.isNameCorrect && personalInfo.isPhoneCorrect)
                 dispatch(increment())
+            else {
+                dispatch(isEmailCorrect())
+                dispatch(isNameCorrect())
+                dispatch(isPhoneCorrect())
+            }
         }
         else if (step === 2) {
             if (planSelection !== '')
